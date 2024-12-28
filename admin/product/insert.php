@@ -14,3 +14,26 @@
 
     }
 ?>
+<!--Fetch Table-->
+<table class="table table-hover">
+<thead>
+    <td>ID</td>
+    <td>Name</td>
+    <td>Price</td>
+    <td>Image</td>
+    <td>Category</td>
+</thead>
+<tbody>
+    <?php 
+        while($row = mysqli_fetch_array($result)):
+            echo "
+                <td>$row[id]</td>
+                <td>$row[pname]</td>
+                <td>$row[price]</td>
+                <td><img src='$row[pimage]'></td>
+                <td>$row[pcategory]</td>
+                ";
+        endwhile;
+    ?>
+</tbody>
+</table> 

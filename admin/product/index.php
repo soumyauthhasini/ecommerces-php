@@ -40,6 +40,51 @@
                     </div>
                 </form>
             </div>
+
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+        <?php
+        include('config.php');
+            $recordQuery = "SELECT * FROM tblproduct";
+            $result = mysqli_query($conn, $recordQuery);
+        ?>
+            <div class="col-md-12 m-auto border border-primary mt-3">
+            <div class="mb-3">
+                <p class="text-center fw-bold fs-3 text-warning">Product List</p>
+            </div>
+                    <!--Fetch Table-->
+                    <table class="table table-hover">
+                        <thead>
+                            <td>ID</td>
+                            <td>Name</td>
+                            <td>Price</td>
+                            <td>Image</td>
+                            <td>Category</td>
+                            <td>Update</td>
+                            <td>Delete</td>
+                        </thead>
+                        <tbody>
+                            <?php 
+                                while($row = mysqli_fetch_array($result)):
+                                    echo "
+                                    <tr>
+                                        <td>$row[id]</td>
+                                        <td>$row[pname]</td>
+                                        <td>$row[price]</td>
+                                        <td><img src='uploadimage/$row[pimage]' height='30px' width='30px'></td>
+                                        <td>$row[pcategory]</td> 
+                                        <td><a href='update.php?id=$row[id]'>Update</a></td>
+                                        <td><a href='delete.php?delid=$row[id]'>Delete</a></td> 
+                                        </tr>
+                                        ";
+                                endwhile;
+                            ?>
+                        </tbody>
+                    </table> 
+            </div>
         </div>
     </div>
 

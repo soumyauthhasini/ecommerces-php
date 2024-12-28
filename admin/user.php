@@ -34,5 +34,40 @@
         <a href="product/index.php" class="text-white text-decoration-none fs-4 fw-bold px-5">Add Post</a>
         <a href="user.php" class="text-white text-decoration-none fs-4 fw-bold px-5">Users</a>
     </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+            <table class="table table-hover">
+                        <thead>
+                            <td>ID</td>
+                            <td>Name</td>
+                            <td>Email</td>
+                            <td>Phone</td>
+                            <td>Delete</td>
+                        </thead>
+                        <tbody>
+                            <?php 
+                                 include('product/config.php');
+                                 $query = mysqli_query($conn, "SELECT * FROM tbluser");
+                                    while($row = mysqli_fetch_array($query)):
+                                    echo "
+                                    <tr>
+                                        <td>$row[id]</td>
+                                        <td>$row[username]</td>
+                                        <td>$row[useremail]</td>
+                                        <td>$row[userno]</td>
+                                        <td><a href='delete.php?delid=$row[id]'>Delete</a></td> 
+                                        </tr>
+                                        ";
+                                endwhile;
+                            ?>
+                        </tbody>
+                    </table> 
+            </div>
+            <div class="col-md-4">
+                <h2>Total User: <?=mysqli_num_rows($query);?></h2>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
